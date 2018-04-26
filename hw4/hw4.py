@@ -1,6 +1,6 @@
 from pyspark import SparkContext
 
-if __name__ == '__main__'
+if __name__ == '__main__':
     sc = SparkContext()
     RES_NYC ='/data/share/bdm/nyc_restaurants.csv'
     Cus = sc.textFile(RES_NYC, use_unicode=False).cache()

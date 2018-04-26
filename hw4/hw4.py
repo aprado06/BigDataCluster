@@ -1,10 +1,10 @@
+import sys
 from pyspark import SparkContext
 
-if __name__ == '__main__':
-    sc = SparkContext()
+def main(sc):
     RES_NYC ='/data/share/bdm/nyc_restaurants.csv'
     Cus = sc.textFile(RES_NYC, use_unicode=False).cache()
-    list(enumerate(sat.first().split(',')))
+    #list(enumerate(sat.first().split(',')))
     
     def extractCuisines(partId, records):
     if partId==0:
@@ -18,3 +18,7 @@ if __name__ == '__main__':
     CusScores = Cus.mapPartitionsWithIndex(extractCuisines) \
                 .reduceByKey(lambda accum, n: accum + n) \
                 .saveAsTextFile('hw4output')
+            
+if __name__ == '__main__':
+    sc = SparkContext()
+    main(sc)

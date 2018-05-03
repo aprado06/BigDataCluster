@@ -2,7 +2,7 @@ import sys
 from pyspark import SparkContext
 
 def main(sc):
-    taxi = sc.textFile('/data/share/bdm/yellow.csv')
+    taxi = sc.textFile('/data/share/bdm/yellow.csv.gz')
     bike = sc.textFile('/data/share/bdm/citibike.csv')
     
     def filterBike(pId, lines):

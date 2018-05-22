@@ -16,7 +16,7 @@ def main(sc):
             yield(agencies,count)
         
     StatScores = Serv.mapPartitionsWithIndex(extractAgency) \
-            .reduceByKey(lambda accum, n: accum + n)
+                .reduceByKey(lambda accum, n: accum + n)
     SS = StatScores.collect()
     SS2= sorted(SS, key=lambda x: int(x[1])) \
          .saveAsTextFile('311Agencies')       

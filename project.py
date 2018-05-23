@@ -18,8 +18,7 @@ def main(sc):
     StatScores = Serv.mapPartitionsWithIndex(extractAgency) \
                      .reduceByKey(lambda accum, n: accum + n)
     SS = StatScores.collect()
-    SS2 = sorted(SS, key=lambda x: int(x[1]))
-    SS2.saveAsTextFile('311Agencies')       
+    SS.saveAsTextFile('311AgenciesOutput')       
             
 if __name__ == '__main__':
     sc = SparkContext()

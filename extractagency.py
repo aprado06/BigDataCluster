@@ -11,10 +11,11 @@ def extractAgency(partId, records):
         yield(agencies,count)
 
 def main(sc):
-    NYC311 = '/user/ywu004/311.csv'
+    NYC311 = "/user/ywu004/311.csv"
     Serv = sc.textFile(NYC311, use_unicode=False)
     #list(enumerate(sat.first().split(',')))
-        
+    Serv.take(2)
+    
     StatScores = Serv.mapPartitionsWithIndex(extractAgency) \
                      .reduceByKey(lambda accum, n: accum + n)
     SS = StatScores.collect()
